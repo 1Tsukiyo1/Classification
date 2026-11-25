@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFApplication.ViewModels;
 
 namespace WPFApplication
 {
@@ -16,9 +17,22 @@ namespace WPFApplication
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainViewModel _viewModel = new();
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+        }
+
+        private void HasHeader_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.LoadPreviewAndColumns();
+        }
+
+        private void LogTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LogTextBox.ScrollToEnd();
         }
     }
 }
